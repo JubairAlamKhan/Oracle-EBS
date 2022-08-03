@@ -1,0 +1,23 @@
+
+---(1) UNIQUE CATEGORY SETS
+
+SELECT
+    UNIQUE CATEGORY_SET_NAME "Category Set"
+FROM
+    MTL_ITEM_CATEGORIES_V 
+ORDER BY 1  ;
+
+---(2) CATEGORY AND CATEGORY SETS
+
+SELECT
+    UNIQUE MICV.CATEGORY_SET_NAME "Category Set",
+    MICV.CATEGORY_CONCAT_SEGS "Category",
+    DECODE( MICV.CONTROL_LEVEL,
+                                        1, 'Master',
+                                        2, 'Org',
+                                        'Other') "Control Level",
+    MICV.CATEGORY_SET_ID "Category Set ID",
+    MICV.CATEGORY_ID "Category ID"
+FROM
+    MTL_ITEM_CATEGORIES_V MICV
+ORDER BY 2,3  ;

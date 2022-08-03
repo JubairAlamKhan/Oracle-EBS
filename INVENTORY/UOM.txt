@@ -1,0 +1,28 @@
+
+---(i) 
+
+SELECT 
+    DISTINCT UOM_CLASS "Class"
+FROM
+    MTL_UNITS_OF_MEASURE
+ORDER BY 1;    
+
+--(ii)
+
+SELECT 
+     UNIT_OF_MEASURE  "UOM"
+FROM
+    MTL_UNITS_OF_MEASURE
+ORDER BY 1;  
+
+---(iii)
+
+SELECT 
+    UOM_CLASS "Class",
+    UNIT_OF_MEASURE "UOM",
+    DESCRIPTION "Description",
+    UOM_CODE "UOM Code",
+    BASE_UOM_FLAG "Base UOM"
+FROM
+    MTL_UNITS_OF_MEASURE
+ORDER BY 1,4 DESC;    
