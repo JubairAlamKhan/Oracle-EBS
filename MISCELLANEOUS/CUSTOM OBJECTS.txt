@@ -1,0 +1,23 @@
+
+---i objects
+
+SELECT *
+FROM
+   DBA_OBJECTS
+WHERE
+   OWNER    = 'XXERP'
+ORDER BY   OBJECT_TYPE ;
+
+
+---ii views
+
+SELECT 
+    OWNER "App Name", 
+    VIEW_NAME "View Name", 
+    TEXT_VC "Query"
+FROM 
+    DBA_VIEWS 
+WHERE 
+      OWNER IN ( 'APPS', 'XXERP')
+AND   VIEW_NAME LIKE '&&CUSTOM_PREFIX\_%' ESCAPE '\'
+ORDER BY 1;   

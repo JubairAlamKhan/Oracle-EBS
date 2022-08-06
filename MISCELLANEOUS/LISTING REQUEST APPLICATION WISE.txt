@@ -1,0 +1,27 @@
+SELECT
+    FA.APPLICATION_SHORT_NAME
+,   FCPV.USER_CONCURRENT_PROGRAM_NAME
+,   DESCRIPTION
+,   DECODE (FCPV.EXECUTION_METHOD_CODE
+            ,'B', 'Request Set Stage Function'
+            ,'Q', 'SQL*Plus'
+            ,'H', 'Host'
+            ,'L', 'SQL*Loader'
+            ,'A', 'Spawned'
+            ,'I', 'PL/SQL Stored Procedure'
+            ,'P', 'Oracle Reports'
+            ,'S', 'Immediate'
+            ,FCPV.EXECUTION_METHOD_CODE) EXE_METHOD
+,   OUTPUT_FILE_TYPE
+,   PROGRAM_TYPE
+,   PRINTER_NAME
+,   MINIMUM_WIDTH
+,   MINIMUM_LENGTH
+,   CONCURRENT_PROGRAM_NAME
+,   CONCURRENT_PROGRAM_ID
+FROM
+    FND_CONCURRENT_PROGRAMS_VL FCPV
+,   FND_APPLICATION FA
+WHERE
+    FCPV.APPLICATION_ID = FA.APPLICATION_ID
+ORDER BY DESCRIPTION;

@@ -1,0 +1,40 @@
+DECLARE
+    V_LE NUMBER;
+    V_OU  NUMBER;
+    V_IO  NUMBER;
+    V_SI  NUMBER;
+    V_L  NUMBER;
+    V_I  NUMBER;
+BEGIN
+    SELECT COUNT(LEGAL_ENTITY_ID) 
+    INTO V_LE
+    FROM  XLE_ENTITY_PROFILES;
+
+    SELECT   COUNT(ORGANIZATION_ID)
+    INTO    V_OU
+    FROM  HR_OPERATING_UNITS;
+
+     SELECT   COUNT(ORGANIZATION_ID) 
+     INTO V_IO
+     FROM   MTL_PARAMETERS;
+
+    SELECT   COUNT(SECONDARY_INVENTORY_NAME) 
+    INTO V_SI
+    FROM MTL_SECONDARY_INVENTORIES;
+
+    SELECT   COUNT(INVENTORY_LOCATION_ID) 
+    INTO V_L
+    FROM  MTL_ITEM_LOCATIONS;
+     
+    SELECT  COUNT(DISTINCT INVENTORY_ITEM_ID) 
+    INTO V_I
+    FROM MTL_SYSTEM_ITEMS_B;  
+     
+     DBMS_OUTPUT.PUT_LINE('Total Legal Entity     : ' || V_LE );
+     DBMS_OUTPUT.PUT_LINE('Total Operating Unit : ' || V_OU);
+     DBMS_OUTPUT.PUT_LINE('Total Organization    : ' || V_IO); 
+     DBMS_OUTPUT.PUT_LINE('Total Sub Inventory  : ' || V_SI);
+     DBMS_OUTPUT.PUT_LINE('Total Locators          : ' || V_L);
+     DBMS_OUTPUT.PUT_LINE('Total Items              : ' || V_I); 
+END;
+/  

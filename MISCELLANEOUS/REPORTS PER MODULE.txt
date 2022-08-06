@@ -1,0 +1,22 @@
+SELECT
+    FA.APPLICATION_SHORT_NAME
+,   DECODE (FCPV.EXECUTION_METHOD_CODE
+    ,'B', 'Request Set Stage Function'
+    ,'Q', 'SQL*Plus'
+    ,'H', 'Host'
+    ,'L', 'SQL*Loader'
+    ,'A', 'Spawned'
+    ,'I', 'PL/SQL Stored Procedure'
+    ,'P', 'Oracle Reports'
+    ,'S', 'Immediate'
+    ,FCPV.EXECUTION_METHOD_CODE) EXE_METHOD
+,   COUNT (CONCURRENT_PROGRAM_ID) COUNT
+FROM
+    FND_CONCURRENT_PROGRAMS_VL FCPV
+,   FND_APPLICATION FA
+WHERE
+    FCPV.APPLICATION_ID = FA.APPLICATION_ID
+GROUP BY
+    FA.APPLICATION_SHORT_NAME
+,   FCPV.EXECUTION_METHOD_CODE
+ORDER BY 1;
